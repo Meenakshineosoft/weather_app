@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/screens/home_page.dart';
+import 'package:flutter/services.dart';
+import 'package:weather_app/login/login.dart';
+import 'package:weather_app/login/sign_in.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-
-      home: HomePage(),
-
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      // home: const HomePage(),
+      home: Login(),
+      routes: {
+        Login.routeName: (context) => Login(),
+        SignIn.routeName: (context) => SignIn(),
+      },
     );
 
 
